@@ -67,3 +67,66 @@
 # Prove to yourself that this will check the nodes in the right order. Draw it out. Show this explanation to your TA.
 # Get your TA to check your work!
 # Make sure all the specs pass.
+
+
+require 'byebug'
+class PolyTreeNode
+    
+    attr_reader :parent, :children, :value
+    attr_writer :parent, :children
+    def initialize(value, children = [], parent = nil )
+        @value = value
+        @children = children
+        @parent = parent
+    end
+    def parent=(new_parent)
+        if parent
+            parent.children.delete(self)
+        end 
+        @parent = new_parent
+        unless parent.nil?
+            parent.children << self
+            parent.children = parent.children.uniq
+        end
+    end
+
+    def add_child(child)
+        child.parent = self       
+    end
+
+    def remove_child(node)
+        parent = (node)
+        
+        # debugger
+        if !children.include?(node)
+            raise 'not a child'
+        else
+            node.parent = nil
+        end
+    end
+
+    def dfs(target)
+
+        return self if self.value == target
+
+        children.each do |child|
+            search_result = child.dfs(target)
+            return search_result unless search_result.nil?
+        end
+        nil
+    end
+
+    def bfs(target)
+        queue = [self]
+        until queue.empty?
+            ele = queue.shift
+            if ele.value == target
+                return ele
+            else 
+                queue += ele.children
+            end 
+        end
+        nil
+    end
+
+end
