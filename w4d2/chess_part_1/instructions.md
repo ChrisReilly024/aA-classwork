@@ -7,7 +7,7 @@ Review the Chess UML Diagram to get an overview of what you'll be creating. The 
 
 You must split your program into multiple files. Use require_relative to load files. Make separate files for each class. Give files snake_case titles.
 
-Learning Goals
+Learning Goalst
 Know when and why private methods are used
 Be able to read UML and understand the benefits of UML
 Be familiar with how to use the Singleton module
