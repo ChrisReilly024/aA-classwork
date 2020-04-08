@@ -8,7 +8,7 @@ class Pawn < Piece
     def symbol
     end
 
-    def move_dirs
+    def moves
 
     end
 

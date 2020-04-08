@@ -7,7 +7,8 @@ class NullPiece < Piece
     include Singleton
 
     def initialize
-        super(color, board, position)
+        # super(color, board, position)
+       @symbol = :N
     end
 
 
