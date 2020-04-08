@@ -5,6 +5,7 @@ class Player
 
     def initialize(color, display)
         @display= display
-        @color = :color
+        @color = :symbol
     end
+
 end
