@@ -1,14 +1,22 @@
 # require_relative 'pawn'
-# require_relative 'rook_bishop_queen'
+require_relative 'rook_bishop_queen'
 # require_relative 'knight_king'
 # require_relative 'null_piece'
 
+
 class Piece   
-    attr_reader :color, :board, :pos
+    attr_accessor :color, :board, :pos
     def initialize(color, board, pos)
         @color = color
         @pos = pos
         @board = board        
+    end
+    def enemy?(pos)
+        self.pos.color != current_player.color
+    end
+     
+    def inspect
+        @color
     end
 
     def to_s
@@ -28,7 +36,7 @@ class Piece
     def symbol
     end
 
-private
+    private
 
     def move_into_check?(end_pos)
     end

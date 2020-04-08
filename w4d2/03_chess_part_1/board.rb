@@ -1,10 +1,56 @@
 require_relative 'piece'
+require_relative "rook_bishop_queen"
+require_relative "slide_mod"
 
 class Board 
-    attr_reader :board, :sentinel
+    attr_reader :sentinel, :populate
+    attr_accessor :grid
     def initialize
-        @sentinel = :N
+        @sentinel = :n
         @grid = Array.new(8) {Array.new(8, @sentinel)}
+        populate
+    end
+
+    def populate
+        place_pawns
+        place_rook
+        place_knight
+        place_king
+        place_queen
+        # place_bishop
+    end
+    
+    def place_pawns
+        #Pawn.new
+        grid[1].map! {|sqr| :P} 
+        grid[6].map! {|sqr| :P}
+    end
+
+    def place_rook
+        # Rook.new
+        sqrs = [[0,0], [0,7], [7,0], [7,7]]
+        sqrs.each {|pos| self[pos] = Rook.new(:W, grid, pos)}
+    end
+    def place_knight
+        # Knight.new
+        sqrs = [[0,1], [0,6], [7,1], [7,6]]
+        sqrs.each {|pos| self[pos] = :K}
+    end
+    
+    # def place_bishop
+    #     # Bishop.new
+    #     sqrs = [[0,2], [0,5], [7,2], [7,5]]
+    #     sqrs.each {|pos| self[pos] = :B}
+    # end
+    def place_queen
+        # Queen.new
+        self[[0,3]] = :Q 
+        self[[7,4]] = :Q
+    end
+    def place_king
+        # King.new
+        self[[0,4]] = :K
+        self[[7,3]] = :K
     end
 
     def [](pos)
@@ -17,7 +63,7 @@ class Board
         @grid[x][y] = val
     end
     
-    def move_piece(start_pos, end_pos)
+    def move_piece!(start_pos, end_pos)
         unless valid_pos?(start_pos) || valid_pos?(end_pos)
             raise "not a valid position"
         else 
@@ -36,7 +82,7 @@ class Board
     end
 
     def valid_pos?(pos)
-        !(pos[0] < 0 || pos[0] > 7) && !(pos[1] < 0 || pos[1] > 7)
+        return false if (pos[0] < 0 || pos[0] > 7) || (pos[1] < 0 || pos[1] > 7) || @grid[pos] != sentinel
     end
 
     def add_piece(piece, pos)
@@ -58,8 +104,9 @@ class Board
 
     end
 
-    def move_piece!(color, start_pos, end_pos)
-
+    def move_piece(color, start_pos, end_pos)
+        raise "Not your piece" if current_player.color != start_pos.color
+        raise "You already have a piece there" if end_pos.color == start_pos.color
     end
 
 end
