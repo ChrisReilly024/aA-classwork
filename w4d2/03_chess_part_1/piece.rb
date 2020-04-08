@@ -1,18 +1,14 @@
-require_relative 'pawn'
-require_relative 'rook_bishop_queen'
-require_relative 'knight_king'
-require_relative 'null_piece'
+# require_relative 'pawn'
+# require_relative 'rook_bishop_queen'
+# require_relative 'knight_king'
+# require_relative 'null_piece'
 
-class Piece
-
-
-   
+class Piece   
+    attr_reader :color, :board, :pos
     def initialize(color, board, pos)
-
-        @color = :color
-        @position = []
-        @board = board
-        
+        @color = color
+        @pos = pos
+        @board = board        
     end
 
     def to_s
@@ -20,6 +16,7 @@ class Piece
     end
 
     def empty?
+        
     end
 
     def valid_moves
