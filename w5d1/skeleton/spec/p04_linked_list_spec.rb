@@ -1,5 +1,6 @@
 require 'rspec'
 require 'p04_linked_list'
+require 'byebug'
 
 describe LinkedList do
   let(:k_v_pairs) do
@@ -43,6 +44,7 @@ describe LinkedList do
   describe "#append" do
     it "appends nodes" do
       empty_list.append(:first, 1)
+      # debugger
       expect(empty_list).to_not be_empty
       expect(empty_list.first.key).to be(:first)
       expect(empty_list.last.key).to be(:first)
