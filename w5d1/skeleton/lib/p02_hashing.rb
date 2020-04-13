@@ -30,21 +30,27 @@ class Hash
   def hash
     alpha = ('a'..'z').to_a + ("A".."Z").to_a 
     sum = 0
+
     self.each do | k, v |
       # p alpha.index(v)
       # p alpha.index(k) * 100
-      first_part = alpha.index(k.to_s) * 371
-      p first_part
-      second_part = alpha.index(v.to_s) * 555
-      p second_part
+      # first_part = alpha.index(k.to_s) * 371
+      # second_part = alpha.index(v.to_s) * 555
 
-      if k.type_of(Integer)
+      first_part = 0
+      second_part = 0
+
+      if k.instance_of?(Integer)
         first_part = k * 8888
-      end 
+      else 
+        first_part = alpha.index(k.to_s) * 371
+      end
 
-      if v.type_of(Integer)
+      if v.instance_of?(Integer)
         second_part = v * 7545654
-      end 
+      else
+        second_part = alpha.index(v.to_s) * 555
+      end
 
       sum += first_part + second_part
     end
