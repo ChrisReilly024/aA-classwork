@@ -13,3 +13,8 @@ end
 def yell(str)
     str.upcase + '!'
 end
+
+def alternating_case(str)
+    str.split.map.with_index {|word, i| i % 2 == 0 ? word.upcase : word.downcase}.join(' ')
+end
+
