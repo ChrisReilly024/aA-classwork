@@ -184,7 +184,7 @@ end
 # p tribonacci_number(3)  # 2
 # p tribonacci_number(4)  # 4
 # p tribonacci_number(5)  # 7
-p tribonacci_number(6)  # 13
+# p tribonacci_number(6)  # 13
 # p tribonacci_number(7)  # 24
 # p tribonacci_number(11) # 274
 
@@ -192,12 +192,15 @@ p tribonacci_number(6)  # 13
 # matrix_addition_reloaded
 # Write a method matrix_addition_reloaded that accepts any number of matrices as arguments. The method should return a new matrix representing the sum of the arguments. Matrix addition can only be performed on matrices of similar dimensions, so if all of the given matrices do not have the same "height" and "width", then return nil.
 
+def matrix_addition_reloaded(*ar)
 
-# matrix_a = [[2,5], [4,7]]
-# matrix_b = [[9,1], [3,0]]
-# matrix_c = [[-1,0], [0,-1]]
-# matrix_d = [[2, -5], [7, 10], [0, 1]]
-# matrix_e = [[0 , 0], [12, 4], [6,  3]]
+end
+
+matrix_a = [[2,5], [4,7]]
+matrix_b = [[9,1], [3,0]]
+matrix_c = [[-1,0], [0,-1]]
+matrix_d = [[2, -5], [7, 10], [0, 1]]
+matrix_e = [[0 , 0], [12, 4], [6,  3]]
 
 # p matrix_addition_reloaded(matrix_a, matrix_b)              # [[11, 6], [7, 7]]
 # p matrix_addition_reloaded(matrix_a, matrix_b, matrix_c)    # [[10, 6], [7, 6]]
@@ -244,6 +247,7 @@ p tribonacci_number(6)  # 13
 
 # squaragonal?
 # Write a method squaragonal? that accepts 2-dimensional array as an argument. The method should return a boolean indicating whether or not the array contains all of the same element across either of its diagonals. You may assume that the 2-dimensional array has "square" dimensions, meaning it's height is the same as it's width.
+
 
 
 # p squaragonal?([
