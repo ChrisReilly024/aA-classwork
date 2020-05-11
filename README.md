@@ -24,10 +24,12 @@ Day 5 - Flight Project, To Do Board Project
 
 Week 3 Ruby
 -----
-Day 1 - HTML Intro, Enumerables Review, Ghost Project
+Day 1 - Enumerables Review, Ghost Project
 
-Day 2 - HTML Containers, Memory Puzzle, Soduku Project
+Day 2 - HTML Intro, Memory Puzzle, Soduku Project
 
-Day 3 -  
-Day 4 - 
-Day 5 - 
+Day 3 - HTML Containers, Recursion Exercises, Word Chain Project
+
+Day 4 - HTML Forms, Screwduku Project, Minesweeper
+
+Day 5 - HTML Head, Pollynode Tree, Knights Traversal Project 
