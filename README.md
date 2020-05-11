@@ -21,3 +21,13 @@ Day 3 - Mastermind Project, Battleship Project, Tic-Tac-Toe Project
 Day 4 - Recursion Exercise, Recap Exercise 1, Recap Exercise 2, Recap Exercise 3
 
 Day 5 - Flight Project, To Do Board Project
+
+Week 3 Ruby
+-----
+Day 1 - HTML Intro, Enumerables Review, Ghost Project
+
+Day 2 - HTML Containers, Memory Puzzle, Soduku Project
+
+Day 3 -  
+Day 4 - 
+Day 5 - 
