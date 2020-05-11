@@ -3,6 +3,6 @@
 # Do not use the built-in Array#sort in your solution :)
 
 
-p is_sorted([1, 4, 10, 13, 15])       == true
-p is_sorted([1, 4, 10, 10, 13, 15])   == true
-p is_sorted([1, 2, 5, 3, 4 ])         == false
+p is_sorted([1, 4, 10, 13, 15])       # true
+p is_sorted([1, 4, 10, 10, 13, 15])   # true
+p is_sorted([1, 2, 5, 3, 4 ])         # false
