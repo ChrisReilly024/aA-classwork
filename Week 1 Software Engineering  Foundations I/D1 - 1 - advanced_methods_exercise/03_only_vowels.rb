@@ -2,10 +2,18 @@
 # The method should return true if the string contains only vowels.
 # The method should return false otherwise.
 
+def only_vowels?(str)
+    str.chars.all? { |char| char.match(/[aeiou]/) }
+    # vowel = 'aeiou'
+    # str.chars.all? {|char| vowel.include?(char)}
+end
 
-p only_vowels?("aaoeee") == true
-p only_vowels?("iou")    == true
-p only_vowels?("cat")    == false
-p only_vowels?("over")   == false
+p only_vowels?("aaoeee") # true
+p only_vowels?("iou")    # true
+p only_vowels?("cat")    # false
+p only_vowels?("over")   # false
 
 
+# reg ex - pattern matcher
+
+# /[aeiou]/  will check if input matches anything in the brackets
