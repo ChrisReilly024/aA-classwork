@@ -3,6 +3,6 @@
 # The method should modify the existing array and not create a new array.
 
 
-p swapper(["a", "b", "c", "d"], 0, 2)               # => ["c", "b", "a", "d"]
-p swapper(["a", "b", "c", "d"], 3, 1)               # => ["a", "d", "c", "b"]
-p swapper(["canal", "broadway", "madison"], 1, 0)   # => ["broadway", "canal", "madison"]
+p swapper(["a", "b", "c", "d"], 0, 2)               == ["c", "b", "a", "d"]
+p swapper(["a", "b", "c", "d"], 3, 1)               == ["a", "d", "c", "b"]
+p swapper(["canal", "broadway", "madison"], 1, 0)   == ["broadway", "canal", "madison"]

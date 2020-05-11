@@ -3,7 +3,7 @@
 # For example "aaabbc" is compressed to "3a2bc".
 
 
-p compress_str("aaabbc")        # => "3a2bc"
-p compress_str("xxyyyyzz")      # => "2x4y2z"
-p compress_str("qqqqq")         # => "5q"
-p compress_str("mississippi")   # => "mi2si2si2pi"
+p compress_str("aaabbc")        == "3a2bc"
+p compress_str("xxyyyyzz")      == "2x4y2z"
+p compress_str("qqqqq")         == "5q"
+p compress_str("mississippi")   == "mi2si2si2pi"
