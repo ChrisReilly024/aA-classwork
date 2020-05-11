@@ -7,10 +7,18 @@
 # to be the same before and after calling your method.
 
 def ele_replace!(array, hash)
-    
+    array.map! do |ele|
+        if hash[ele]
+            hash[ele]
+        else
+            ele
+        end
+    end
+    array
 end
 
 
+# array.map! {|ele| hash[ele] ? hash[ele] : ele}
 array_1 = [4, 2, 0, 2]
 p array_1.object_id         # => 70119569670520
 result_1 = ele_replace!(array_1, {2=>"two", 0=>"zero", 5=>"five"})
