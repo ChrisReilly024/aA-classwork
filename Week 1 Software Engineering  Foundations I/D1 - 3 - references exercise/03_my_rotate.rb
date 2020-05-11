@@ -11,7 +11,13 @@
 
 
 def my_rotate!(array, amt)
-
+    direction = amt > 0 ? "+" : "-" 
+    count = amt.abs
+    while count != 0
+        direction == "+" ? array.push(array.shift) : array.unshift(array.pop)
+        count -= 1
+    end
+    array
 end
 
 
