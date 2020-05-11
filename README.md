@@ -1,10 +1,10 @@
 WEEK 1 Software Engineering Foundations I
 -----
-Day 1 - Advanced Methods Project, Algorithmic Strategy Project, References Project
+Day 1 5-11-20 - Advanced Methods Project, Algorithmic Strategy Project, References Project
 
-Day 2 - Rspec Exercise, Debugging Project 1, Debugging Project 2, Blocks Project, Procs Project
+Day 2 - 5-12-20 Rspec Exercise, Debugging Project 1, Debugging Project 2, Blocks Project, Procs Project
 
-Day 3 - Rspec Exercise 2, Nauseating Numbers,
+Day 3 - 5-12-20 - Rspec Exercise 2, Nauseating Numbers
 
 Day 4 - Rspec Exercise 3, Rspec Exercise 4, Perilous Procs
 
