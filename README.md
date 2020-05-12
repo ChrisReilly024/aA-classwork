@@ -4,7 +4,7 @@ Day 1 - Advanced Methods Project, Algorithmic Strategy Project, References Proje
 
 Day 2 - Rspec Exercise, Debugging Project 1, Debugging Project 2, Blocks Project, Procs Project
 
-Day 3 - Rspec Exercise 2, Nauseating Numbers,
+Day 3 - Rspec Exercise 2, Nauseating Numbers
 
 Day 4 - Rspec Exercise 3, Rspec Exercise 4, Perilous Procs
 
