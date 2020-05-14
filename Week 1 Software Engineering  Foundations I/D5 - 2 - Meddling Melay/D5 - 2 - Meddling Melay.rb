@@ -1,3 +1,4 @@
+require 'byebug'
 # Meddling Medley
 
 # This problem set will test your knowledge about the last few topics you explored. Like usual, the difficulty will ramp up as work through the set. Ready? Let's do it.
@@ -9,7 +10,7 @@
 # duos
 # Write a method duos that accepts a string as an argument and returns the count of the number of times the same character appears consecutively in the given string.
 
-# Examples
+
 
 # p duos('bootcamp')       == 1
 # p duos('wxxyzz')         == 2
@@ -86,7 +87,7 @@ end
 
 def triplet_true(str)
     str.each_char.with_index do |char, i|
-        if char == str[i +1] && char == str[i + 2]
+        if char == str[i + 1] && char == str[i + 2]
             return true 
         end
     end
@@ -157,9 +158,9 @@ def conjunct_select(array, *prc)
     results
 end
 
-is_positive = Proc.new { |n| n > 0 }
-is_odd = Proc.new { |n| n.odd? }
-less_than_ten = Proc.new { |n| n < 10 }
+# is_positive = Proc.new { |n| n > 0 }
+# is_odd = Proc.new { |n| n.odd? }
+# less_than_ten = Proc.new { |n| n < 10 }
 
 # p conjunct_select([4, 8, -2, 11, 7, -3, 13], is_positive)  == [4, 8, 11, 7, 13]
 # p conjunct_select([4, 8, -2, 11, 7, -3, 13], is_positive, is_odd)  == [11, 7, 13]
@@ -185,7 +186,6 @@ def convert_pig_latin(sent)
             new_str += convert(word) + " "
         end
     end
-
     new_str.split.map {|word| capitalize(word)}.join(" ").strip
 end
 
@@ -204,20 +204,13 @@ def convert(word)
     if vowels.include?(word[0])
         return word + 'yay'
     else 
-        (0...word.length).each do |i|
+        (1...word.length).each do |i|
             if vowels.include?(word[i])
                 return word[i..-1] + word[0...i] + "ay"
             end
         end
     end
-        
-        #     return word + 'yay'
-        # else
-        #     return word[i..-1] + word[0...i]
-        # end
-        #     i = word.match(/[aeiouAEIOU]/) 
-        #     p i
-        # if word.start_with?(/[aeiouAEIOU]/)
+
 end
 
 # p convert_pig_latin('We like to eat bananas')  == "We ikelay to eatyay ananasbay"
@@ -254,29 +247,38 @@ def reverberate(str)
 end
 
 def changer(word)
+    
     vowels = 'aeiou'
     idx = 0
     return word + word if vowels.include?(word[-1])
     word.reverse.each_char.with_index do |char, i|
-        # idx = i if vowels.include?(char)
-        return word + word[-i-1..-1] if char.match(/[aeiou]/) 
+        if vowels.include?(char)
+            idx = i 
+            break
+        end
+        
+        # return word + word[-i-1..-1] if char.match(/[aeiou]/) 
     end
-    # word + word[-idx-1..-1]
-    # idx is 0 so it's  word + word[-1..-1] so double letter at end
- end
+    word + word[-idx-1..-1]
+end
 
-
-p reverberate('We like to go running fast')  # "We likelike to go runninging fastast"
-p reverberate('He cannot find the trash')  # "He cannotot findind thethe trashash"
-p reverberate('Pasta is my favorite dish')  # "Pastapasta is my favoritefavorite dishish"
-p reverberate('Her family flew to France')  # "Herer familyily flewew to Francefrance"
+# p reverberate('We like to go running fast')  == "We likelike to go runninging fastast"
+# p reverberate('He cannot find the trash')  == "He cannotot findind thethe trashash"
+# p reverberate('Pasta is my favorite dish')  == "Pastapasta is my favoritefavorite dishish"
+# p reverberate('Her family flew to France')  == "Herer familyily flewew to Francefrance"
 #-------------------------------------
 
 # disjunct_select
 
 # Write a method disjunct_select that accepts an array and one or more procs as arguments. The method should return a new array containing the elements that return true when passed into at least one of the given procs.
 
-# Examples
+def disjunct_select(arr, *prcs)
+    arr.select do |ele| 
+        prcs.any? {|prc| prc.call(ele)}
+    end
+end
+
+
 
 # longer_four = Proc.new { |s| s.length > 4 }
 # contains_o = Proc.new { |s| s.include?('o') }
@@ -310,8 +312,27 @@ p reverberate('Her family flew to France')  # "Herer familyily flewew to Francef
 # ... and so on
 
 # Note that words that contain no vowels should remain unchanged. Vowels are the letters a, e, i, o, u.
+def remove_vowel(word)
+    word.sub(/[aeiou]/, '')
+end
 
-# Examples
+
+
+def alternating_vowel(str)
+    i = 0
+    str = str.split
+    array = []
+    while i < str.length
+        if i.even?
+           array << remove_vowel(str[i])
+        else
+            array << remove_vowel(str[i].reverse).reverse
+        end
+        i += 1
+    end           
+    array.join(' ')
+end
+
 
 # p alternating_vowel('panthers are great animals')  == "pnthers ar grat animls"
 # p alternating_vowel('running panthers are epic')  == "rnning panthrs re epc"
@@ -323,6 +344,23 @@ p reverberate('Her family flew to France')  # "Herer familyily flewew to Francef
 
 # Write a method silly_talk that accepts a sentence as an argument. The method should translate each word of the sentence according to the following rules:
 
+def silly_talk(sent)
+    sent = sent.split 
+    arr = [] 
+    sent.map do |word|
+        if word[-1].match(/[aeiouAEIOU]/)
+            arr << word + word[-1]
+        else 
+            arr << swap(word)
+        end
+    end
+    arr.map {|word| capitalize(word)}.join(" ")
+end
+
+def swap(arr)
+    vowels = 'aeiouAEIOU'
+    arr.chars.map {|char| vowels.include?(char) ? char + "b" + char : char}.join("")
+end
 # if the word ends with a vowel, simply repeat that vowel at the end of the word (example: 'code'->'codee')
 # if the word ends with a non-vowel, every vowel of the word should be followed by 'b' and that same vowel (example: 'siren'->'sibireben')
 # Note that if words are capitalized in the original sentence, they should remain capitalized in the translated sentence. Vowels are the letters a, e, i, o, u.
@@ -339,8 +377,22 @@ p reverberate('Her family flew to France')  # "Herer familyily flewew to Francef
 
 # Write a method compress that accepts a string as an argument. The method should return a "compressed" version of the string where streaks of consecutive letters are translated to a single appearance of the letter followed by the number of times it appears in the streak. If a letter does not form a streak (meaning that it appears alone), then do not add a number after it.
 
-# Examples
+def compress(str)
+    count = 1
+    i = 0
+    new_str = ''
+    while i < str.length
+        if str[i] == str[i+1]
+            count += 1
+        else 
+            new_str += count == 1 ? str[i] : str[i] + count.to_s
+            count = 1
+        end
+        i += 1
+    end
+    new_str
+end
 
-# p compress('aabbbbc')    == "a2b4c"
+# p compress('aabbbbc')     == "a2b4c"
 # p compress('boot')       == "bo2t"
 # p compress('xxxyxxzzzz') == "x3yx2z4"
