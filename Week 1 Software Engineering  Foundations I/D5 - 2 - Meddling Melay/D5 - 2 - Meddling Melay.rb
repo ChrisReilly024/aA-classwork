@@ -22,26 +22,32 @@
 
 # Write a method sentence_swap that accepts a sentence and a hash as arguments. The method should return a new sentence where every word is replaced with it's corresponding value in the hash. If a word does not exist as a key of the hash, then it should remain unchanged.
 
+def sentence_swap(sent, hash)
+    sent.split.map  {|word| hash[word] ? hash[word] : word}.join(" ")
+end
+
 # Examples
 
 # p sentence_swap('anything you can do I can do',
 #     'anything'=>'nothing', 'do'=>'drink', 'can'=>'shall'
-# )  == 'nothing you shall drink I shall drink'
+# )  # 'nothing you shall drink I shall drink'
 
 # p sentence_swap('what a sad ad',
 #     'cat'=>'dog', 'sad'=>'happy', 'what'=>'make'
-# )  == 'make a happy ad'
+# )  # 'make a happy ad'
 
 # p sentence_swap('keep coding okay',
 #     'coding'=>'running', 'kay'=>'pen'
-# )  == 'keep running okay'
+# )  # 'keep running okay'
 #-------------------------------------
 
 # hash_mapped
 
 # Write a method hash_mapped that accepts a hash, a proc, and a block. The method should return a new hash where each key is the result of the original key when given to the block. Each value of the new hash should be the result of the original values when passed into the proc.
 
-# Examples
+def hash_mapped(hash, prc1, prc2)
+
+end
 
 # double = Proc.new { |n| n * 2 }
 # p hash_mapped({'a'=>4, 'x'=>7, 'c'=>-3}, double) { |k| k.upcase + '!!' }
@@ -56,57 +62,84 @@
 
 # Write a method counted_characters that accepts a string as an argument. The method should return an array containing the characters of the string that appeared more than twice. The characters in the output array should appear in the same order they occur in the input string.
 
-# Examples
+def counted_characters(str)
+    repeats = []
+    hash = Hash.new(0)
+    str.each_char do |char|
+        hash[char] += 1
+    end
+    hash.each do |k,v|
+        repeats << k if v > 2
+    end
+    repeats
+end
 
-# p counted_characters("that's alright folks")  == ["t"]
-# p counted_characters("mississippi")  == ["i", "s"]
-# p counted_characters("hot potato soup please")  == ["o", "t", " ", "p"]
-# p counted_characters("runtime")  == []
+# p counted_characters("that's alright folks")  # ["t"]
+# p counted_characters("mississippi")  # ["i", "s"]
+# p counted_characters("hot potato soup please")  # ["o", "t", " ", "p"]
+# p counted_characters("runtime")  # []
 #-------------------------------------
 
 # triplet_true?
 
 # Write a method triplet_true? that accepts a string as an argument and returns a boolean indicating whether or not the string contains three of the same character consecutively.
 
-# Examples
+def triplet_true(str)
+    str.each_char.with_index do |char, i|
+        if char == str[i +1] && char == str[i + 2]
+            return true 
+        end
+    end
+    false 
+end
 
-# p triplet_true('caaabb')         == true
-# p triplet_true('terrrrrible')    == true
-# p triplet_true('runninggg')      == true
-# p triplet_true('bootcamp')       == false
-# p triplet_true('e')              == false
+# p triplet_true('caaabb')         # true
+# p triplet_true('terrrrrible')    # true
+# p triplet_true('runninggg')      # true
+# p triplet_true('bootcamp')       # false
+# p triplet_true('e')              # false
 #-------------------------------------
 
 # energetic_encoding
 
 # Write a method energetic_encoding that accepts a string and a hash as arguments. The method should return a new string where characters of the original string are replaced with the corresponding values in the hash. If a character is not a key of the hash, then it should be replaced with a question mark ('?'). Space characters (' ') should remain unchanged.
 
-# Examples
+def energetic_encoding(str, hash)
+    str.split(' ').map  {|word| word.chars.map{|char| hash[char] ? hash[char] : '?'}.join('') }.join(" ")
+end
+
+
 
 # p energetic_encoding('sent sea',
 #     'e'=>'i', 's'=>'z', 'n'=>'m', 't'=>'p', 'a'=>'u'
-# )  == 'zimp ziu'
+# )  # 'zimp ziu'
 
 # p energetic_encoding('cat',
 #     'a'=>'o', 'c'=>'k'
-# )  == 'ko?'
+# )  # 'ko?'
 
 # p energetic_encoding('hello world',
 #     'o'=>'i', 'l'=>'r', 'e'=>'a'
-# )  == '?arri ?i?r?'
+# )  # '?arri ?i?r?'
 
-# p energetic_encoding('bike', {})  == '????'
-#-------------------------------------
+# p energetic_encoding('bike', {})  # '????'
+# #-------------------------------------
 
 # uncompress
 
 # Write a method uncompress that accepts a string as an argument. The string will be formatted so every letter is followed by a number. The method should return an "uncompressed" version of the string where every letter is repeated multiple times given based on the number that appears directly after the letter.
 
-# Examples
+def uncompress(str)
+    result = "" 
+    str.each_char.with_index do |char, i|
+        result += char * str[i+1].to_i
+    end
+    result
+end
 
-# uncompress('a2b4c1')  == 'aabbbbc'
-# uncompress('b1o2t1')  == 'boot'
-# uncompress('x3y1x2z4')  == 'xxxyxxzzzz'
+# p uncompress('a2b4c1')  == 'aabbbbc'
+# p uncompress('b1o2t1')  == 'boot'
+# p uncompress('x3y1x2z4')  == 'xxxyxxzzzz'
 
 #-------------------------------------
 # Phase 2: More difficult, maybe?
@@ -116,11 +149,17 @@
 
 # Write a method conjunct_select that accepts an array and one or more procs as arguments. The method should return a new array containing the elements that return true when passed into all of the given procs.
 
-# Examples
+def conjunct_select(array, *prc)
+    results = []
+    array.each do |ele|
+        results << ele if prc.all? {|proc| proc.call(ele)}
+    end
+    results
+end
 
-# is_positive = Proc.new { |n| n > 0 }
-# is_odd = Proc.new { |n| n.odd? }
-# less_than_ten = Proc.new { |n| n < 10 }
+is_positive = Proc.new { |n| n > 0 }
+is_odd = Proc.new { |n| n.odd? }
+less_than_ten = Proc.new { |n| n < 10 }
 
 # p conjunct_select([4, 8, -2, 11, 7, -3, 13], is_positive)  == [4, 8, 11, 7, 13]
 # p conjunct_select([4, 8, -2, 11, 7, -3, 13], is_positive, is_odd)  == [11, 7, 13]
@@ -137,7 +176,49 @@
 # if the word begins with a non-vowel, move all letters that come before the word's first vowel to the end of the word and add 'ay' (example: 'trash'->'ashtray')
 # Note that if words are capitalized in the original sentence, they should remain capitalized in the translated sentence. Vowels are the letters a, e, i, o, u.
 
-# Examples
+def convert_pig_latin(sent)
+    new_str = "" 
+    sent.split.each do |word|
+        if word.length < 3 
+            new_str += word + " "
+        else
+            new_str += convert(word) + " "
+        end
+    end
+
+    new_str.split.map {|word| capitalize(word)}.join(" ").strip
+end
+
+def capitalize(word)
+    capitals = ("A".."Z").to_a
+    word.each_char do |char|
+        if capitals.include?(char)
+            return word.capitalize
+        end
+    end
+    word
+end
+
+def convert(word)
+    vowels = 'aeiouAEIOU'
+    if vowels.include?(word[0])
+        return word + 'yay'
+    else 
+        (0...word.length).each do |i|
+            if vowels.include?(word[i])
+                return word[i..-1] + word[0...i] + "ay"
+            end
+        end
+    end
+        
+        #     return word + 'yay'
+        # else
+        #     return word[i..-1] + word[0...i]
+        # end
+        #     i = word.match(/[aeiouAEIOU]/) 
+        #     p i
+        # if word.start_with?(/[aeiouAEIOU]/)
+end
 
 # p convert_pig_latin('We like to eat bananas')  == "We ikelay to eatyay ananasbay"
 # p convert_pig_latin('I cannot find the trash')  == "I annotcay indfay ethay ashtray"
@@ -152,16 +233,43 @@
 
 # words that are shorter than 3 characters are unchanged
 # words that are 3 characters or longer are translated according to the following rules:
-# if the word ends with a vowel, simply repeat the word twice (example: 'like'->'likelike')
-# if the word ends with a non-vowel, repeat all letters that come after the word's last vowel, including the last vowel itself (example: 'trash'->'trashash')
+# long words
+# ends with a vowel, simply repeat the word twice (example: 'like'->'likelike')
+# ends with a non-vowel, repeat all letters that come after the word's last vowel, including the last vowel itself (example: 'trash'->'trashash')
 # Note that if words are capitalized in the original sentence, they should remain capitalized in the translated sentence. Vowels are the letters a, e, i, o, u.
 
-# Examples
+def reverberate(str)
+    # storage arr
+    # helper method vowel non vowel
+    # .captilaize???
+    result = []
+    str.split.each do |word|
+        if word.length < 3
+            result << word
+        else
+           result << changer(word)
+        end
+    end
+    result.map {|word| capitalize(word)}.join(' ')
+end
 
-# p reverberate('We like to go running fast')  == "We likelike to go runninging fastast"
-# p reverberate('He cannot find the trash')  == "He cannotot findind thethe trashash"
-# p reverberate('Pasta is my favorite dish')  == "Pastapasta is my favoritefavorite dishish"
-# p reverberate('Her family flew to France')  == "Herer familyily flewew to Francefrance"
+def changer(word)
+    vowels = 'aeiou'
+    idx = 0
+    return word + word if vowels.include?(word[-1])
+    word.reverse.each_char.with_index do |char, i|
+        # idx = i if vowels.include?(char)
+        return word + word[-i-1..-1] if char.match(/[aeiou]/) 
+    end
+    # word + word[-idx-1..-1]
+    # idx is 0 so it's  word + word[-1..-1] so double letter at end
+ end
+
+
+p reverberate('We like to go running fast')  # "We likelike to go runninging fastast"
+p reverberate('He cannot find the trash')  # "He cannotot findind thethe trashash"
+p reverberate('Pasta is my favorite dish')  # "Pastapasta is my favoritefavorite dishish"
+p reverberate('Her family flew to France')  # "Herer familyily flewew to Francefrance"
 #-------------------------------------
 
 # disjunct_select
