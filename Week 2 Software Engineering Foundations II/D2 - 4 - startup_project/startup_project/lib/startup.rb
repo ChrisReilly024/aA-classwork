@@ -42,22 +42,21 @@ class Startup
         @employees.each {|emp| self.pay_employee(emp)}
     end
   
+    def average_salary
+      sum = 0
+      (@employees.map { |emp| @salaries[emp.title] }.sum)/(@employees.length*1.0)
+    end
+
+    def close
+        @employees = []
+        @funding = 0
+    end
+
+    def acquire(startup)
+        @funding += startup.funding
+        @salaries = startup.salaries.merge(@salaries)
+        startup.employees.each {|emp| @employees << emp}
+        startup.close
+    end
 end
-# Failures:
 
-#   1) Startup PART 2 #hire when the title is invalid should not add to @employees
-#      Failure/Error: expect(startup_1.employees).to eq([])
-#      NoMethodError:
-#        undefined method `employees' for #<Startup:0x000000000719e108>
-#        Did you mean?  employee
-#      # ./spec/startup_spec.rb:124:in `block (5 levels) in <top (required)>'
-
-#   2) Startup PART 2 #hire when the title is valid should add the new Employee instance to @employees
-#      Failure/Error: employee = startup_1.employees[0]
-#      NoMethodError:
-#        undefined method `employees' for #<Startup:0x00000000070a01c0>
-#        Did you mean?  employee
-#      # ./spec/startup_spec.rb:136:in `block (5 levels) in <top (required)>'
-
-# Finished in 0.0456 seconds (files took 0.34551 seconds to load)
-# 5 examples, 2 failures
