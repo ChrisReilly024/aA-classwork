@@ -5,5 +5,7 @@ class Code
     "B" => :blue,
     "Y" => :yellow
   }
-
+  def self.valid_pegs?(char)
+    char.all? {|peg| POSSIBLE_PEGS.has_key?(peg.upcase)}
+  end
 end
