@@ -10,6 +10,8 @@ Day 4 - Rspec Exercise 3, Rspec Exercise 4, Perilous Procs
 
 Day 5 - Rspec Exercise 5, Meddling Melay
 
+Assessment Score: 14/14 => 100%
+
 Week 2 Software Engineering Foundations II
 -----
 Day 1 - Dog Project, Bootcamp Project, Monkey Patching Project
