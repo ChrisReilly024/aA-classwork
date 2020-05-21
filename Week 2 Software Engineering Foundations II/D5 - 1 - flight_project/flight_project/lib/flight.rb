@@ -16,4 +16,12 @@ end
         end
     end
 
+    def list_passengers
+        @passengers.map(&:name)
+    end
+
+    def [](idx)
+        @Wpassengers[idx]
+    end
+
 end
