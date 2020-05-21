@@ -1,0 +1,42 @@
+load 'item.rb'
+my_item = Item.new('Fix login page', '2019-10-42', 'It loads slow.')
+my_item = Item.new('Fix login page', '2019-10-22', 'It loads slow.')
+my_item.title
+my_item.description = 'It loads waaaaaay too slow!'
+my_item
+my_item.deadline = "10-23-2019"
+my_item.deadline
+my_item.deadline = "2019-10-23"
+my_item.deadline
+my_item
+
+Results
+1 => true
+2 RuntimeError: deadline is not valid
+
+3 #<Item:0x
+    @deadline="2019-10-22",
+    @description="It loads slow.",
+    @title="Fix login page">
+
+4 "Fix login page"
+
+5 "It loads waaaaaay too slow!"
+
+6 #<Item:0x
+    @deadline="2019-10-22",
+    @description="It loads waaaaaay too slow!",
+    @title="Fix login page">
+
+7 RuntimeError: deadline is not valid
+
+8 "2019-10-22"
+
+9 "2019-10-23"
+
+10 "2019-10-23"
+
+11 #<Item:0x
+    @deadline="2019-10-23",
+    @description="It loads waaaaaay too slow!",
+    @title="Fix login page">
