@@ -24,4 +24,8 @@ end
         @passengers[idx]
     end
 
+    def <<(passenger)
+        board_passenger(passenger)
+    end
+
 end
