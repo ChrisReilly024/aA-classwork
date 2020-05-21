@@ -1,5 +1,9 @@
 require_relative 'item'
 class List
+    LINE_WIDTH = 42
+    INDEX_COL_WIDTH = 5
+    ITEM_COL_WIDTH = 20
+    DEADLINE_COL_WIDTH = 10
 
     attr_accessor :label
     def initialize(label)
@@ -43,13 +47,23 @@ class List
     end
     
     def print
-        p "-------------------------------"
-        p "|          #{@label.upcase}          |"
-        p "-------------------------------"
-        p "|  Index    |      Item     | Deadline| "
-        p "-------------------------------"
+        puts "-" * LINE_WIDTH
+        puts " " * 16 + self.label.upcase
+        puts "-" * LINE_WIDTH
+        puts "#{'Index'.ljust(INDEX_COL_WIDTH)} | #{'Item'.ljust(ITEM_COL_WIDTH)} | #{'Deadline'.ljust(DEADLINE_COL_WIDTH)}"
+        puts "-" * LINE_WIDTH
         @items.each_with_index do |item,i| 
-            p "|#{i.to_s} | #{item.title} | #{item.deadline}|"
+            p "#{i.to_s.ljust(INDEX_COL_WIDTH)} | #{item.title.ljust(ITEM_COL_WIDTH)} | #{item.deadline.ljust(DEADLINE_COL_WIDTH)}"
         end       
+        puts "-" * LINE_WIDTH
+    end
+
+    def print_full_item(idx)
+        if valid_index?(idx)
+            puts "-------------------------"
+            puts "#{@items[idx].title}        #{@items[idx].deadline}"
+            puts "#{@items[idx].description}"
+            puts "-------------------------"
+        end
     end
 end
