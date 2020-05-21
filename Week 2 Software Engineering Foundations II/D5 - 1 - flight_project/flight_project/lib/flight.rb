@@ -21,7 +21,7 @@ end
     end
 
     def [](idx)
-        @Wpassengers[idx]
+        @passengers[idx]
     end
 
 end
