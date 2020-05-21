@@ -66,4 +66,14 @@ class List
             puts "-------------------------"
         end
     end
+    def print_priority(idx)
+        if valid_index?(idx)
+            puts "-------------------------"
+            puts "#{@items[0].title}        #{@items[0].deadline}"
+            puts "#{@items[0].description}"
+            puts "-------------------------"
+        end
+    end
+
+
 end
