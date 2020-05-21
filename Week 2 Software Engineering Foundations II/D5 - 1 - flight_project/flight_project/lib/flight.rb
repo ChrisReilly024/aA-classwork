@@ -6,4 +6,8 @@ def initialize(flight_number, capacity)
     @passengers = []
 end
 
+    def full?
+        @passengers.length >= @capacity
+    end
+
 end
