@@ -15,3 +15,24 @@ class Item
     end
 end
 
+# def up(list,idx, spots=1)
+
+#     while spots != 0
+#         return 'Item at top of list' if idx == 0
+#         swap(idx, idx-1)
+
+#     end
+# end 
+
+
+# def swap(list, idx1, idx2)
+#     if !valid_index?(idx1) || !valid_index?(idx2)
+#         raise "Invalid index"
+#     else
+#         @items[idx1],@items[idx2] = @items[idx2], @items[idx1]
+#         return true
+#     end
+# end
+
+#    list = ['deadline="2019-10-25', 'Get American and Feta for good measure.',"cheese"]
+# up(list, 2, spots)
