@@ -8,7 +8,6 @@ my_list.add_item('cheese', '2019-10-25', 'Get American and Feta for good measure
 
 my_list.add_item('toothpaste', '2019-10-25')
 
-my_list.add_item('shampoo', '10-24-2019') # invalid date
 
 my_list.add_item('shampoo', '2019-10-24')
 

@@ -86,25 +86,16 @@ class List
         end
         "successful swap"
     end 
+    def down(idx, spots=1)
+        return "Invalid index" if !valid_index?(idx)
+        while spots != 0
+            return "Item at bottom of the list" if idx == size - 1
+            swap(idx,idx + 1)
+            spots -= 1
+            idx += 1
+        end
+        "successful swap"
+    end 
 
 end
 
-
-# my_list.swap(3,1)
-# def up(idx, spots=1)
-#     while spots != 0
-#         return 'Item at top of list' if idx == 0
-#         swap(idx, idx-1)
-#         spots -= 1 
-#     end
-# end 
-# end
-
-# def swap(idx1, idx2)
-#     if !valid_index?(idx1) || !valid_index?(idx2)
-#         raise "Invalid index"
-#     else
-#         @items[idx1],@items[idx2] = @items[idx2], @items[idx1]
-#         return true
-#     end
-# end
