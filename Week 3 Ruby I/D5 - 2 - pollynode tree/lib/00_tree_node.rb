@@ -6,7 +6,7 @@ class PolyTreeNode
         @parent = nil
         @children = []
     end
-    
+
     def parent=(node)
         self.parent.children.delete(self) if self.parent 
         # deletes itself from parent array
@@ -14,6 +14,11 @@ class PolyTreeNode
         # assignes new parent. prevents child in multiple array and repeating
         @parent.children << self unless self.parent.nil?
         # adds self to new parents children if new parent != nil
+    end
+
+    # parent= adds node to array 
+    def add_child(child)
+        child.parent = self
     end
 end
 
