@@ -18,19 +18,25 @@ class KnightPathFinder
         # if so, new pos goes into valid moves
         MOVES.each do |px, py|
             new_pos = []
-            if px + x > 
+            new_pos[0] = px + x if px + x < 7 && px + x >= 0 
+            new_pos[1] = py + y if py + y < 7 && py + y >= 0 
+            valids << new_pos if new_pos.size > 1 && !valids.include?(nil)
+            
+            
         end
+        valids.uniq.select {|pairs| !pairs.include?(nil)}
     end
-
+    pp valid_moves([1,2])
     attr_reader :start, :board
     def initialize(start)
         @board = Array.new(8) {Array.new(8,'-')}
-        @start = @board[start]
+        @start = start
+        @considered = [@start]
     end
 
-    def build_move_tree(@start)
+    # def build_move_tree(@start)
 
-    end
+    # end
 end
 
 
