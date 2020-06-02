@@ -1,0 +1,2 @@
+class Slideable
+end
