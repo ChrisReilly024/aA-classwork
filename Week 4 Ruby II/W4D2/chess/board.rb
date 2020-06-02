@@ -1,7 +1,16 @@
+require_relative "piece.rb"
+# require_relative "null"
+
 class Board
     def initialize
         @rows = Array.new(8) { Array.new(8)}
-        @sentinel = NullPiece
+        # @sentinel = NullPiece.new
+
+        @rows.each_with_index do |row,i|
+            if i == 0 || i == 1 || i == 6 || i == 7
+                row.map! {|ele| Piece.new }
+            end
+        end
     end
 
     def [](pos)
@@ -15,6 +24,9 @@ class Board
     end
 
     def move_piece(color, start_pos, end_pos)
+        raise 'Empty spot chief'if self[start_pos].nil? 
+        raise "can't go there chief" if !self[end_pos].nil?    
+        self[start_pos], self[end_pos] = self[end_pos], self[start_pos]
     end
 
     def valid_pos?(pos)
@@ -37,6 +49,10 @@ class Board
     end
 
     def dup
+    end
+
+    def move_piece!(color, start_pos, end_pos) #This one with a !
+    end
 
 
 

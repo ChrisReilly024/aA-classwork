@@ -1,7 +1,9 @@
 class Piece
-    def initialize(color, board, pos)
-        @color = Symbol 
-         @board = Board
-         @pos = pos.split
+    def initialize 
     end
 end
+
+#(color, board, pos)
+# @color = Symbol 
+        #  @board = Board
+        #  @pos = pos.split
