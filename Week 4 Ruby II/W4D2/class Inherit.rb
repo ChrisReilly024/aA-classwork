@@ -40,8 +40,7 @@ class Manager < Employee
         total = 0
         employees.each do |emp|
             if emp.is_a?(Manager)
-                total += emp.salary
-                total += emp.get_salaries
+                total += emp.salary + emp.get_salaries
             else #now we check if they're manager
                 total += emp.salary
             end
