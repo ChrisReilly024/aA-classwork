@@ -45,12 +45,16 @@ end
 
 # PHASE 4
 class BestFriendError < StandardError ; end 
+class StrangerError < StandardError ; end
+class BoringError < StandardError ; end
+
 class BestFriend
   def initialize(name, yrs_known, fav_pastime)
+    raise StrangerError.new("If we were friends I'd know your name") if name.length < 1
+    raise BestFriendError.new("Can't be best friends, 5+ years required") if yrs_known < 5
+    raise BoringError.new("I don't know you like that") if fav_pastime.length < 1
     @name = name
-  rescue
     @yrs_known = yrs_known
-    
     @fav_pastime = fav_pastime
   end
 
@@ -67,4 +71,6 @@ class BestFriend
   end
 end
 
+a = BestFriend.new('Joe',6, '')
+p a
 
