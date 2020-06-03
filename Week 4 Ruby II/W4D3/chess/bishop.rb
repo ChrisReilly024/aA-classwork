@@ -1,4 +1,17 @@
+require_relative 'slideable'
+require_relative 'piece'
+
 class Bishop < Piece
-    include Slidable
+    include Slideable
+
+    def symbol
+        :B
+    end
+
+    protected 
+
+    def move_dirs
+        diagonal_dirs
+    end
 
 end

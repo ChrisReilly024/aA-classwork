@@ -2,13 +2,16 @@ require_relative "piece.rb"
 # require_relative "null"
 
 class Board
+    attr_accessor :rows
     def initialize
         @rows = Array.new(8) { Array.new(8)}
-        # @sentinel = NullPiece.new
+        @sentinel = NullPiece.instance
 
         @rows.each_with_index do |row,i|
             if i == 0 || i == 1 || i == 6 || i == 7
                 row.map! {|ele| :N  } #Piece.new
+            else
+                row.map! {|ele| @sentinel}
             end
         end
     end
@@ -34,10 +37,12 @@ class Board
         row,col = pos
         return false if row < 0 || row > 7    
         return false if col < 0 || col > 7  
+        return false if self[pos] != nil #added this 
         true  
     end
 
     def add_piece(piece, pos)
+        self[pos] = piece  #.symbol
     end
 
     def checkmate?(color)
@@ -61,3 +66,5 @@ class Board
 
 
 end
+
+# undefinedd method `[]=' for nil:NilClass
