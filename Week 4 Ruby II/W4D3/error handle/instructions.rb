@@ -6,6 +6,7 @@
 # Be able to explain how an exception bubbles up after it is raised
 # Know when to use ensure and retry
 # Be able to choose an appropriate exception class
+
 # Phase 1: Setup
 # Download the project skeleton. You will primarily be working in super_useful.rb to improve errors in our library. The user's script, aptly named user_script.rb, will be using the functions and classes defined in super_useful.rb.
 
