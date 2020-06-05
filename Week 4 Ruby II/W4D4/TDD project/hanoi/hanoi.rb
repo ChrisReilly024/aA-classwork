@@ -65,14 +65,18 @@ class Hanoi
     def valid_move?(move)
         return true if @board[move[1]].empty?
         if @board[move[0]].first > @board[move[1]].first
-            response[2]
-            get_move
+            puts response[2]
+            # get_move
         else
             return true
         end
     end
 end
 
+a = Hanoi.new
+a.move_piece([0,1])
+a.valid_move?([0,2])
+a.print
 
 =begin
     
@@ -89,9 +93,6 @@ end
     # a.print
 =end
     
-a = Hanoi.new
-a.move_piece([0,1])
-a.print
 # a.get_move
 # p a.valid_input?([1,1])
     
