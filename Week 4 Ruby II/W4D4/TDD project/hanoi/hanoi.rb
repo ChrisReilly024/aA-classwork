@@ -23,7 +23,7 @@ class Hanoi
         "Winner!!", #4
         "Do you want to play again?, y / n", #5
         "Goodbye!", #6
-        "Invalid response?", #7
+        "Invalid response", #7
         "Start stack is empty" #8        
         ]
     end
@@ -69,6 +69,7 @@ class Hanoi
         if @board[move[0]].first > @board[move[1]].first
             puts response[2]
             get_move
+            return false
         else
             return true
         end
@@ -89,9 +90,11 @@ class Hanoi
         if input != 'y' || input != 'n'
             puts response[7]
             reset
+            return false
         elsif input == 'y'
             @board = [ [1,2,3], [], [] ]
             play
+            return true
         else
             puts response[6]
             return false
@@ -100,8 +103,8 @@ class Hanoi
     
     def play
         until win?
-            get_move
-            move_piece
+            move = get_move
+            move_piece(move)
             print
             win?
         end
@@ -109,26 +112,20 @@ class Hanoi
     end
 end
 
-# a = Hanoi.new
-# a.move_piece([0,1])
-# a.valid_move?([0,2])
-# a.print
 
-=begin
-    
-    get input
-    check input
-    accept if valid repeat if not
+#----------------------------------------
+# def set_game        
+#     for i in 0...stones do
+#         @board[0] << i + 1
+#         @board[i] = [] if !@board[i].nil? && i != 0
+#     end
+# end
 
-    plug input into move
-    check if move valid
-    make move
+#def initialize(stacks, stones)
+    # raise InitError.new('stacks and stones must be an integer') if !stacks.is_a?(Integer) || !stones.is_a?(Integer)
+    # @stacks = stacks
+    # @stones = stones
+    # @board = Array.new(stacks) {Array.new}
+    # set_game
+#end
 
-    # p a.valid_move?([0,1])
-    # a.move_piece([0,1])
-    # a.print
-=end
-    
-# a.get_move
-# p a.valid_input?([1,1])
-    
