@@ -23,7 +23,17 @@ class Hanoi
     def get_move
         puts prompt[2]
         input = gets.chomp.split(',').map(&:i)
+        valid_input?(input)
         input
+    end
+
+    def valid_input?(input)
+        if (input[0] < 0 || input[0] > stacks - 1) || (input[1] < 0 || input[1] > stacks - 1)
+            puts prompt[0]
+            get_move
+        else
+            return true
+        end
     end
 
     def valid_move?(input)
