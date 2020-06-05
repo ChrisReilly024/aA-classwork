@@ -44,5 +44,21 @@ class Hanoi
             return true
         end
     end
+
+    def move_piece(move)
+        @board[move[1]].unshift(@board[move[0]].shift)
+    end
+
+    def won?
+        final = []
+        i = 0
+        until final.length == stones
+            final << i
+            i += 1
+        end
+        @board[2] == final ? true : false
+    end
+
+
 end
 
