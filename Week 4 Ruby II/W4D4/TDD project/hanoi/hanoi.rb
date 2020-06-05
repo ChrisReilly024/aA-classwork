@@ -1,6 +1,8 @@
 class InitError < StandardError; end
 
 class Hanoi
+    attr_reader :stones
+    attr_accessor :stacks
     def initialize(stacks, stones)
         raise InitError.new('stacks and stones must be an integer') if !stacks.is_a?(Integer) || !stones.is_a?(Integer)
         @stacks = stacks
@@ -10,7 +12,16 @@ class Hanoi
     end
     
     def prompt
-        ['Invalid input, try again', 'Invalid move, stack error', "Move piece from which stack to which stack? input format should be #,# ex. (1,2)"]
+        [
+            'Invalid input, try again', #0
+            'Invalid move, stack error', #1
+            "Move piece from which stack to which stack? input format should be #,# ex. (1,2)", #2
+            "Winner!!", #3
+            "Do you want to play again?, y / n", #4
+            "Goodbye!", #5
+            "Invalid response, y / n ?", #6
+            "Start stack is empty" #7        
+        ]
     end
 
     def set_game        
@@ -40,6 +51,9 @@ class Hanoi
         if @board[input[0]].first > @board[input[1]]
             puts prompt[1]
             return false
+        elsif input[0].empty?
+            prompt[7]
+            return false
         else
             return true
         end
@@ -53,12 +67,43 @@ class Hanoi
         final = []
         i = 0
         until final.length == stones
-            final << i
+            final << i + 1
             i += 1
         end
-        @board[2] == final ? true : false
+        p final
+        if @board[2] == final 
+            puts prompt[3]
+            return true
+        else
+            return false
+        end
     end
 
+    def print
+        system('clear')
+        p @board
+    end
+
+    def play_again?
+        puts prompt[4]
+        input = gets.input.downcase
+        if input != 'y' || input != 'n'
+            prompt[6]
+            play_again?
+        end
+        if input == 'y'
+            play
+            return true
+        else
+            prompt[5]
+            return false
+        end
+    end    
 
 end
 
+
+
+a = Hanoi.new(3,3)
+
+a.make_move(0,1)
