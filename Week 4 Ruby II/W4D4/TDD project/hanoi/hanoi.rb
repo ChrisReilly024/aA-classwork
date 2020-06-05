@@ -15,15 +15,15 @@ class Hanoi
     
     def response
         [
-            'Invalid input, one or both stacks do not exist, try again', #0
-            "Invalid input, You need to move a piece from one stack to another", #1
-            'Invalid move, stack error, cannot move piece on top of a smaller piece', #2
-            "Move piece from which stack to which stack? input format should be #,# ex. 1,2", #3
-            "Winner!!", #4
-            "Do you want to play again?, y / n", #5
-            "Goodbye!", #6
-            "Invalid response, y / n ?", #7
-            "Start stack is empty" #8        
+        'Invalid input, one or both stacks do not exist, try again', #0
+        "Invalid input, You need to move a piece from one stack to another", #1
+        'Invalid move, stack error, cannot move piece on top of a smaller piece', #2
+        "Move piece from which stack to which stack? input format should be #,# ex. 1,2", #3
+        "Winner!!", #4
+        "Do you want to play again?, y / n", #5
+        "Goodbye!", #6
+        "Invalid response, y / n ?", #7
+        "Start stack is empty" #8        
         ]
     end
 
@@ -57,6 +57,20 @@ class Hanoi
             return true
         end
     end
+
+    def move_piece(move)
+        @board[move[1]].unshift(@board[move[0]].shift)
+    end
+
+    def valid_move?(move)
+        return true if @board[move[1]].empty?
+        if @board[move[0]].first > @board[move[1]].first
+            response[2]
+            get_move
+        else
+            return true
+        end
+    end
 end
 
 
@@ -76,7 +90,8 @@ end
 =end
     
 a = Hanoi.new
-a.get_move
-# p a.valid_input?([1,1])
+a.move_piece([0,1])
 a.print
+# a.get_move
+# p a.valid_input?([1,1])
     
