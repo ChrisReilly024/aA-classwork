@@ -5,6 +5,7 @@ class Hanoi
     attr_accessor :stacks
     def initialize
         @board = [ [1,2,3], [], [] ]
+        play
         # def initialize(stacks, stones)
         # raise InitError.new('stacks and stones must be an integer') if !stacks.is_a?(Integer) || !stones.is_a?(Integer)
         # @stacks = stacks
@@ -22,7 +23,7 @@ class Hanoi
         "Winner!!", #4
         "Do you want to play again?, y / n", #5
         "Goodbye!", #6
-        "Invalid response, y / n ?", #7
+        "Invalid response?", #7
         "Start stack is empty" #8        
         ]
     end
@@ -41,7 +42,6 @@ class Hanoi
     def get_move
         puts response[3]
         move = gets.chomp.split(',').map(&:to_i)
-        p move
         get_move if !valid_input?(move)
         move
     end
@@ -59,24 +59,60 @@ class Hanoi
     end
 
     def move_piece(move)
-        @board[move[1]].unshift(@board[move[0]].shift)
+        if valid_move?(move)
+            @board[move[1]].unshift(@board[move[0]].shift)
+        end
     end
 
     def valid_move?(move)
         return true if @board[move[1]].empty?
         if @board[move[0]].first > @board[move[1]].first
             puts response[2]
-            # get_move
+            get_move
         else
             return true
         end
     end
+
+    def win?
+        if @board[2] == [1,2,3]
+            puts response[4]
+            return true
+        else
+            return false
+        end
+    end
+    
+    def reset
+        puts response[5]
+        input = gets.chomp.downcase
+        if input != 'y' || input != 'n'
+            puts response[7]
+            reset
+        elsif input == 'y'
+            @board = [ [1,2,3], [], [] ]
+            play
+        else
+            puts response[6]
+            return false
+        end
+    end
+    
+    def play
+        until win?
+            get_move
+            move_piece
+            print
+            win?
+        end
+        reset
+    end
 end
 
-a = Hanoi.new
-a.move_piece([0,1])
-a.valid_move?([0,2])
-a.print
+# a = Hanoi.new
+# a.move_piece([0,1])
+# a.valid_move?([0,2])
+# a.print
 
 =begin
     
