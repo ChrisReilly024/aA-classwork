@@ -3,3 +3,4 @@ class Nulls < ActiveRecord::Migration[5.2]
   end
   add_index :users, :session_tokens, unique: true
 end
+
