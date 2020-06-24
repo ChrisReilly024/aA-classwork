@@ -1,3 +1,3 @@
 class ApplicationRecord < ActiveRecord::Base
-  self.abstract_class = true
+  validates :email, :session_token, uniqueness: true, presence: true
 end
